@@ -39,7 +39,7 @@ head(allspp)
 
 allspp<-allspp[,-5]
 
-allspp<-filter(allspp,year >= 1980) # avoid years before 1980 (n=7)
+allspp<-filter(allspp,year >= 1980) # exclude years before 1980 (n=7)
 
 #1.2# Loop for calculating all required metrics
 
@@ -188,7 +188,7 @@ dev.off()
 
 #2.1# Load data and explore locations
 
-portfolio<-read.table(file="portfolioDataForGEB.txt",header=T,dec=".",sep=",")
+portfolio<-read.table(file="portfolioDataForICES.txt",header=T,dec=".",sep=",")
 
 head(portfolio)
 
@@ -1143,7 +1143,7 @@ peSEM.mv<-'mvpe      ~ z.value + synchrony
 
 defSEM<-sem(peSEM.mv,data=portfolio)
 summary(defSEM,rsquare=T,standardized=T)
-lavaanPlot(model=defSEM,coefs=T,stand=T,graph_options=list(layout="circo"),sig=0.05)
+lavaanPlot(model=defSEM,coefs=T,stand=T,graph_options=list(layout="circo"),sig=0.05) # final plot done outside R
 
 #4.5# Fit SEM using picewiseSEM
 
@@ -2592,7 +2592,7 @@ peSEM.cv<-'avcvpe    ~ z.value + synchrony + richness + DepthCV
 
 partial.peSEMCV<-sem(peSEM.cv,data=portfolio)
 summary(partial.peSEMCV,rsquare=T,standardized=T)
-lavaanPlot(model=partial.peSEMCV,coefs=T,stand=T,graph_options=list(layout="circo"),sig=0.05)
+lavaanPlot(model=partial.peSEMCV,coefs=T,stand=T,graph_options=list(layout="circo"),sig=0.05) # final plot done outside R
 
 #6.2# Calculating direct and indirect effects for AvCV_PE using lavaan syntax
 
